@@ -1,0 +1,20 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+
+/*
+  Generated class for the MyAccountProvider provider.
+
+  See https://angular.io/guide/dependency-injection for more info on providers
+  and Angular DI.
+*/
+@Injectable()
+export class MyAccountProvider {
+
+  coins : number = 850;
+  host : string = "https://givealike.a2hosted.com/deathwhisper.php?"
+
+  constructor() {
+    console.log('Hello MyAccountProvider Provider');
+  }
+
+}

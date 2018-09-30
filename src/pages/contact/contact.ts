@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {MyAccountProvider} from "../../providers/my-account/my-account";
 
 @Component({
   selector: 'page-contact',
@@ -7,8 +8,12 @@ import { NavController } from 'ionic-angular';
 })
 export class ContactPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public myaccount : MyAccountProvider,public navCtrl: NavController) {
 
+  }
+
+  onBuyCoins(amount : number){
+    this.myaccount.coins += amount;
   }
 
 }

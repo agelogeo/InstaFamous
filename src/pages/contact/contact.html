@@ -1,17 +1,29 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Store
     </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openModal()">
+        {{myaccount.coins}} <ion-icon name="logo-usd"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+      <button ion-button block large (click)="onBuyCoins(10)">Buy 10 Hearts</button>
+    </ion-item>
+    <ion-item>
+      <button ion-button block large (click)="onBuyCoins(50)">Buy 50 Hearts</button>
+    </ion-item>
+    <ion-item>
+      <button ion-button block large (click)="onBuyCoins(100)">Buy 100 Hearts</button>
+    </ion-item>
+    <ion-item>
+      <button ion-button color="secondary" block large (click)="onBuyCoins(5)">Watch an ad for 5 Hearts</button>
     </ion-item>
   </ion-list>
 </ion-content>
