@@ -11,6 +11,9 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MyAccountProvider } from '../providers/my-account/my-account';
+import {Profile} from "../pages/profile/profile";
+
+import { ModalPost } from '../pages/modal-post/modal-post';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { MyAccountProvider } from '../providers/my-account/my-account';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    Profile,
+    ModalPost
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,9 @@ import { MyAccountProvider } from '../providers/my-account/my-account';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    Profile,
+    ModalPost
   ],
   providers: [
     StatusBar,
