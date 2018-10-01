@@ -20,7 +20,7 @@ export class HomePage {
   }
 
   goToStore(){
-    this.navCtrl.push(ContactPage);
+    this.navCtrl.parent.select(2);
   }
 
 }

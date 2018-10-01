@@ -9,6 +9,7 @@ import {MyAccountProvider} from "../../providers/my-account/my-account";
 export class ModalPost {
 
   likes : number = 25;
+  minimum_required_balance : number = 25;
 
   public modal_data = {};
 

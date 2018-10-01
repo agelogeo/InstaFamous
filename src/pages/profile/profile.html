@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="white">
-    <ion-title>candelibas</ion-title>
+    <ion-title>friends</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="goToStore()">
         {{myaccount.coins}} <ion-icon name="heart"></ion-icon>
@@ -15,7 +15,7 @@
   <ion-row padding>
     <!-- Avatar -->
     <ion-col col-3 >
-      <img  src="https://avatars1.githubusercontent.com/u/918975?v=3&s=120" class="avatar" alt="">
+      <img  src="https://instagram.fskg1-1.fna.fbcdn.net/vp/713593596bfb4238100a3445a63de3a8/5C46D953/t51.2885-19/s150x150/15338479_1300861239971389_3600258071038787584_a.jpg" class="avatar" alt="">
 
     </ion-col>
     <!-- Information about user -->
@@ -44,9 +44,9 @@
 
   <!-- Profile info -->
   <div margin>
-    <p no-margin no-padding><b>Can Delibas</b></p>
-    <p no-padding no-margin class="info">Software developer, open-source lover, invoker spammer & heavy metal guitarist</p>
-    <p no-padding no-margin class="info"><a href="#">github.com/candelibas</a></p>
+    <p no-margin no-padding><b>Friends</b></p>
+    <p no-padding no-margin class="info">Official Friends Instagram account.</p>
+    <p no-padding no-margin class="info"><a href="#">www.fb.com/friends.tv</a></p>
   </div>
 
 
@@ -54,7 +54,7 @@
   <ion-grid>
     <ion-row >
       <ion-col col-4 class="grid_img" *ngFor="let i of images" (click)="pressPhoto(i.id, i.username, i.profile_img, i.post_img)">
-        <img src="/assets/imgs/logo.png" alt="">
+        <img [src]="i.post_img" alt="">
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -14,7 +14,7 @@ export class AboutPage {
   }
 
   goToStore(){
-    this.navCtrl.push(ContactPage);
+    this.navCtrl.parent.select(2);
   }
 
 }
