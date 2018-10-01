@@ -12,5 +12,26 @@
 </ion-header>
 
 <ion-content padding>
+  <div>
+    <img [src]="modal_data.post_img" alt="">
+  </div>
+
+
+  <ion-list>
+    <ion-list-header>
+      Likes <ion-badge item-end color="danger">{{likes}}</ion-badge>
+    </ion-list-header>
+    <ion-item>
+      <ion-range [min]="minimum_required_balance" [max]="myaccount.coins" step="5" [(ngModel)]="likes" color="primary">
+        <ion-icon range-left small color="danger" name="heart" ></ion-icon>
+        <ion-icon range-right color="danger" name="heart" style="zoom:1.5;"></ion-icon>
+      </ion-range>
+    </ion-item>
+  </ion-list>
+  <ion-row>
+    <ion-col>
+      <button ion-button round block color="primary" (click)="SendLikes()" [disabled]="myaccount.coins < minimum_required_balance">Send me likes!</button>
+    </ion-col>
+  </ion-row>
 
 </ion-content>
