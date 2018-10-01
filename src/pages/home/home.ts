@@ -16,7 +16,7 @@ export class HomePage {
   }
 
   onClick(){
-    this.myaccount.coins -= 50;
+    this.myaccount.coins += 5;
   }
 
   goToStore(){

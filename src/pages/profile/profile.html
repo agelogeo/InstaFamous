@@ -4,7 +4,7 @@
     <ion-title>candelibas</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="goToStore()">
-        {{myaccount.coins}} <ion-icon name="logo-usd"></ion-icon>
+        {{myaccount.coins}} <ion-icon name="heart"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -43,7 +43,7 @@
   </ion-row>
 
   <!-- Profile info -->
-  <div margin padding>
+  <div margin>
     <p no-margin no-padding><b>Can Delibas</b></p>
     <p no-padding no-margin class="info">Software developer, open-source lover, invoker spammer & heavy metal guitarist</p>
     <p no-padding no-margin class="info"><a href="#">github.com/candelibas</a></p>
@@ -53,7 +53,7 @@
 
   <ion-grid>
     <ion-row >
-      <ion-col col-4 class="grid_img" *ngFor="let i of images" (press)="pressPhoto(i.id, i.username, i.profile_img, i.post_img)">
+      <ion-col col-4 class="grid_img" *ngFor="let i of images" (click)="pressPhoto(i.id, i.username, i.profile_img, i.post_img)">
         <img src="/assets/imgs/logo.png" alt="">
       </ion-col>
     </ion-row>

@@ -5,7 +5,7 @@
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only >
-        {{myaccount.coins}} <ion-icon name="logo-usd"></ion-icon>
+        {{myaccount.coins}} <ion-icon name="heart"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -14,16 +14,16 @@
 <ion-content>
   <ion-list>
     <ion-item>
-      <button ion-button block large (click)="onBuyCoins(10)">Buy 10 Hearts</button>
+      <button ion-button icon-end block large (click)="onBuyCoins(50)">Buy 50 <ion-icon name="heart"></ion-icon></button>
     </ion-item>
     <ion-item>
-      <button ion-button block large (click)="onBuyCoins(50)">Buy 50 Hearts</button>
+      <button ion-button icon-end block large (click)="onBuyCoins(100)">Buy 100 <ion-icon name="heart"></ion-icon></button>
     </ion-item>
     <ion-item>
-      <button ion-button block large (click)="onBuyCoins(100)">Buy 100 Hearts</button>
+      <button ion-button icon-end block large (click)="onBuyCoins(250)">Buy 250 <ion-icon name="heart"></ion-icon></button>
     </ion-item>
     <ion-item>
-      <button ion-button color="secondary" block large (click)="onBuyCoins(5)">Watch an ad for 5 Hearts</button>
+      <button ion-button icon-end color="secondary" block large (click)="onBuyCoins(25)">Watch an ad for 25 <ion-icon name="heart"></ion-icon></button>
     </ion-item>
   </ion-list>
 </ion-content>
