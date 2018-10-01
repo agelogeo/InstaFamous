@@ -4,7 +4,7 @@
     <ion-title>friends</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="goToStore()">
-        {{myaccount.coins}} <ion-icon name="heart"></ion-icon>
+        {{myaccount.coins}} <ion-icon name="heart" color="danger"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -20,15 +20,15 @@
     </ion-col>
     <!-- Information about user -->
     <ion-col col-3 text-center >
-      <h6>21</h6>
+      <h6>{{images.length}}</h6>
       <p no-padding no-margin>posts</p>
     </ion-col>
     <ion-col col-3 text-center>
-      <h6>114</h6>
+      <h6>{{images.length * 2}}</h6>
       <p no-paddin no-margin>followers</p>
     </ion-col>
     <ion-col col-3 text-center>
-      <h6>119</h6>
+      <h6>{{images.length * 4}}</h6>
       <p no-paddin no-margin>following</p>
     </ion-col>
   </ion-row>
