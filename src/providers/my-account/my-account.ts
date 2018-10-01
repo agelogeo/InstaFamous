@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MyAccountProvider {
 
-  coins : number = 850;
+  coins : number = 300;
   host : string = "https://givealike.a2hosted.com/deathwhisper.php?"
 
   constructor() {

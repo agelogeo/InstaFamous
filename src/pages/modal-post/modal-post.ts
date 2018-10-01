@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, ViewController, NavParams } from 'ionic-angular';
+import {ModalController, ViewController, NavParams, LoadingController, ToastController} from 'ionic-angular';
 import {MyAccountProvider} from "../../providers/my-account/my-account";
 
 @Component({
@@ -10,14 +10,9 @@ export class ModalPost {
 
   likes : number = 25;
 
-  public like_btn = {
-    color: 'black',
-    icon_name: 'heart-outline'
-  };
-
   public modal_data = {};
 
-  constructor(public myaccount: MyAccountProvider,public viewCtrl: ViewController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(private toastCtrl: ToastController,public loadingCtrl: LoadingController,public myaccount: MyAccountProvider,public viewCtrl: ViewController, public navParams: NavParams, public modalCtrl: ModalController) {
     this.modal_data = { // Getting data from previous page
       id: this.navParams.get('user_id'),
       username: this.navParams.get('username'),
@@ -26,25 +21,45 @@ export class ModalPost {
     };
   }
 
-  ionViewDidLoad() {}
-
   dismiss() {
     this.viewCtrl.dismiss();
   }
 
-  likeButton() {
-    if(this.like_btn.icon_name === 'heart-outline') {
-      this.like_btn.icon_name = 'heart';
-      this.like_btn.color = 'danger';
-    }
-    else {
-      this.like_btn.icon_name = 'heart-outline';
-      this.like_btn.color = 'black';
-    }
+  SendLikes(){
+    this.presentLoadingDefault();
   }
 
-  goUserProfile(userId: number) {
-    console.log("User id: " + userId);
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 2000);
+
+    loading.onDidDismiss(() => {
+      this.myaccount.coins -= this.likes;
+      this.presentToast();
+      this.dismiss();
+    });
   }
+
+  presentToast() {
+    let toast = this.toastCtrl.create({
+      message: 'Thank you for your order.',
+      duration: 3000,
+      position: 'top'
+    });
+
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+
+    toast.present();
+  }
+
   
 }
