@@ -11,19 +11,19 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
+  <ion-card *ngFor="let c of cards" >
+    <ion-card-header>
+      {{c.header}}
+    </ion-card-header>
+    <ion-card-content>
+      {{c.text}}<ion-icon name="heart"  color="danger"></ion-icon> <br>
+      <button ion-button icon-end block (click)="onBuyCoins(c.likes)">Buy Now - {{c.price}} €</button>
+    </ion-card-content>
+  </ion-card>
   <ion-list>
     <ion-item>
-      <button ion-button icon-end block large (click)="onBuyCoins(50)">Buy 50 <ion-icon name="heart"  color="danger"></ion-icon></button>
-    </ion-item>
-    <ion-item>
-      <button ion-button icon-end block large (click)="onBuyCoins(100)">Buy 100 <ion-icon name="heart"  color="danger"></ion-icon></button>
-    </ion-item>
-    <ion-item>
-      <button ion-button icon-end block large (click)="onBuyCoins(250)">Buy 250 <ion-icon name="heart"  color="danger"></ion-icon></button>
-    </ion-item>
-    <ion-item>
-      <button ion-button icon-end color="secondary" block large (click)="onBuyCoins(25)">Watch an ad for 25 <ion-icon name="heart"  color="danger"></ion-icon></button>
+      <button ion-button icon-end color="dark" block outline large (click)="onBuyCoins(25)">Watch an ad for 25 <ion-icon name="heart" color="danger"></ion-icon></button>
     </ion-item>
   </ion-list>
 </ion-content>
