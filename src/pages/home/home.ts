@@ -24,11 +24,15 @@ export class HomePage {
     },
     {
       id: 3,
-      post_img: 'https://instagram.fskg1-1.fna.fbcdn.net/vp/00f08066ed2f0eefccd72166e281578a/5BB51082/t50.2886-16/42098008_1985188098186115_6602570627624730624_n.mp4'
+      post_img: 'https://instagram.fskg1-1.fna.fbcdn.net/vp/9f5edd287924e30395f991e739f755e5/5C579A1B/t51.2885-15/sh0.08/e35/s640x640/40567044_311554762955507_1264015443589653261_n.jpg'
     },
     {
       id: 4,
       post_img: 'https://instagram.fskg1-1.fna.fbcdn.net/vp/2fdc9c1f3348a7845c814d88d91cb604/5C4A6231/t51.2885-15/e35/41512205_235565503973774_2245543374697750663_n.jpg'
+    }    ,
+    {
+      id: 5,
+      post_img: 'https://instagram.fskg1-1.fna.fbcdn.net/vp/e6ddf6454d8e527afdc273e0064bcb9b/5C413870/t51.2885-15/e35/39525709_1875427272546782_3587824604573335552_n.jpg'
     }
   ]
 
@@ -47,6 +51,7 @@ export class HomePage {
   }
 
   NextButton(){
+    this.isActivated = false;
     this.i ++;
     if(this.i == this.free_images.length)
       this.i = 0;
