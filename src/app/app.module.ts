@@ -14,6 +14,7 @@ import { ModalPost } from '../pages/modal-post/modal-post';
 import {FreeLikePage} from "../pages/free-like/free-like";
 import {FollowerStorePage} from "../pages/follower-store/follower-store";
 import {LikeStorePage} from "../pages/like-store/like-store";
+import {LoginPage} from "../pages/login/login";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {LikeStorePage} from "../pages/like-store/like-store";
     ModalPost,
     FreeLikePage,
     FollowerStorePage,
-    LikeStorePage
+    LikeStorePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import {LikeStorePage} from "../pages/like-store/like-store";
     ModalPost,
     FreeLikePage,
     FollowerStorePage,
-    LikeStorePage
+    LikeStorePage,
+    LoginPage
   ],
   providers: [
     StatusBar,

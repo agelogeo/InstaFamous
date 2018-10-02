@@ -10,6 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MyAccountProvider {
 
+  access_token : string = '';
   coins : number = 300;
   host : string = "https://givealike.a2hosted.com/deathwhisper.php?"
 
