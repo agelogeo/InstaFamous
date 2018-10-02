@@ -5,6 +5,7 @@ import { ModalPost } from '../modal-post/modal-post';
 
 import {ContactPage} from "../contact/contact";
 import {MyAccountProvider} from "../../providers/my-account/my-account";
+import {AboutPage} from "../about/about";
 
 
 @IonicPage()
@@ -193,6 +194,10 @@ export class Profile {
 
   goToStore(){
     this.navCtrl.parent.select(2);
+  }
+
+  goToFollowersStore(){
+    this.navCtrl.push(AboutPage);
   }
 
 }

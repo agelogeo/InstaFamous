@@ -48,6 +48,12 @@ export class HomePage {
 
   LikeButton(){
     this.isActivated = !this.isActivated;
+    if(this.isActivated){
+      this.myaccount.coins ++;
+    }else{
+      this.myaccount.coins --;
+    }
+
   }
 
   NextButton(){

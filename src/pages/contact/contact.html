@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Store
+      Likes' Store
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only >
@@ -14,10 +14,10 @@
 <ion-content >
   <ion-card *ngFor="let c of cards" >
     <ion-card-header>
-      {{c.header}}
+      <ion-icon name="heart"  color="danger" style="zoom:1.5;"></ion-icon> {{c.header}}
     </ion-card-header>
     <ion-card-content>
-      {{c.text}}<ion-icon name="heart"  color="danger"></ion-icon> <br>
+      {{c.text}} <br>
       <button ion-button icon-end block (click)="onBuyCoins(c.likes)">Buy Now - {{c.price}} €</button>
     </ion-card-content>
   </ion-card>
