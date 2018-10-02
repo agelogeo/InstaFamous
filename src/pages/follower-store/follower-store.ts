@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MyAccountProvider} from "../../providers/my-account/my-account";
-import {ContactPage} from "../contact/contact";
 
+/**
+ * Generated class for the FollowerStorePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-follower-store',
+  templateUrl: 'follower-store.html',
 })
-export class AboutPage {
+export class FollowerStorePage {
 
   public cards = [
     {

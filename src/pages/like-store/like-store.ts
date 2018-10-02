@@ -1,12 +1,20 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MyAccountProvider} from "../../providers/my-account/my-account";
 
+/**
+ * Generated class for the LikeStorePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-like-store',
+  templateUrl: 'like-store.html',
 })
-export class ContactPage {
+export class LikeStorePage {
 
   public cards = [
     {
@@ -30,7 +38,7 @@ export class ContactPage {
       price: 5.00,
       likes: 250
     },
-   ];
+  ];
 
   constructor(public myaccount : MyAccountProvider,public navCtrl: NavController) {
 

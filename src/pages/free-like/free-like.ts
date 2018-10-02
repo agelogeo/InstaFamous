@@ -1,13 +1,20 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MyAccountProvider} from "../../providers/my-account/my-account";
-import {ContactPage} from "../contact/contact";
 
+/**
+ * Generated class for the FreeLikePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html'
+  selector: 'page-free-like',
+  templateUrl: 'free-like.html',
 })
-export class HomePage {
+export class FreeLikePage {
 
   i : number = 0;
   isActivated : boolean = false;
@@ -62,4 +69,5 @@ export class HomePage {
     if(this.i == this.free_images.length)
       this.i = 0;
   }
+
 }

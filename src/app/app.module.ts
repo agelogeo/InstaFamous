@@ -3,9 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -14,16 +11,19 @@ import { MyAccountProvider } from '../providers/my-account/my-account';
 import {Profile} from "../pages/profile/profile";
 
 import { ModalPost } from '../pages/modal-post/modal-post';
+import {FreeLikePage} from "../pages/free-like/free-like";
+import {FollowerStorePage} from "../pages/follower-store/follower-store";
+import {LikeStorePage} from "../pages/like-store/like-store";
 
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
     TabsPage,
     Profile,
-    ModalPost
+    ModalPost,
+    FreeLikePage,
+    FollowerStorePage,
+    LikeStorePage
   ],
   imports: [
     BrowserModule,
@@ -32,12 +32,12 @@ import { ModalPost } from '../pages/modal-post/modal-post';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
     TabsPage,
     Profile,
-    ModalPost
+    ModalPost,
+    FreeLikePage,
+    FollowerStorePage,
+    LikeStorePage
   ],
   providers: [
     StatusBar,

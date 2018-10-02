@@ -3,9 +3,8 @@ import {IonicPage, NavController, NavParams, ModalController, Tabs, Nav} from 'i
 
 import { ModalPost } from '../modal-post/modal-post';
 
-import {ContactPage} from "../contact/contact";
 import {MyAccountProvider} from "../../providers/my-account/my-account";
-import {AboutPage} from "../about/about";
+import {FollowerStorePage} from "../follower-store/follower-store";
 
 
 @IonicPage()
@@ -197,7 +196,7 @@ export class Profile {
   }
 
   goToFollowersStore(){
-    this.navCtrl.push(AboutPage);
+    this.navCtrl.push(FollowerStorePage);
   }
 
 }
