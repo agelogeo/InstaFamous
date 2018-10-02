@@ -15,6 +15,7 @@ import {FreeLikePage} from "../pages/free-like/free-like";
 import {FollowerStorePage} from "../pages/follower-store/follower-store";
 import {LikeStorePage} from "../pages/like-store/like-store";
 import {LoginPage} from "../pages/login/login";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 @NgModule({
   declarations: [
@@ -45,8 +46,9 @@ import {LoginPage} from "../pages/login/login";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MyAccountProvider
+    MyAccountProvider,
+    InAppBrowser,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}
