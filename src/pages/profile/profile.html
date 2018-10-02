@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="white">
-    <ion-title>friends</ion-title>
+    <ion-title>{{myaccount.account.data.username}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="goToStore()">
         {{myaccount.coins}} <ion-icon name="heart" color="danger"></ion-icon>
@@ -15,20 +15,20 @@
   <ion-row padding>
     <!-- Avatar -->
     <ion-col col-3 >
-      <img  src="https://instagram.fskg1-1.fna.fbcdn.net/vp/713593596bfb4238100a3445a63de3a8/5C46D953/t51.2885-19/s150x150/15338479_1300861239971389_3600258071038787584_a.jpg" class="avatar" alt="">
+      <img  [src]="myaccount.account.data.profile_picture" class="avatar" alt="">
 
     </ion-col>
     <!-- Information about user -->
     <ion-col col-3 text-center >
-      <h6>{{images.length}}</h6>
+      <h6>{{myaccount.account.data.counts.media}}</h6>
       <p no-padding no-margin>posts</p>
     </ion-col>
     <ion-col col-3 text-center>
-      <h6>{{images.length * 2}}</h6>
+      <h6>{{myaccount.account.data.counts.followed_by}}</h6>
       <p no-paddin no-margin>followers</p>
     </ion-col>
     <ion-col col-3 text-center>
-      <h6>{{images.length * 4}}</h6>
+      <h6>{{myaccount.account.data.counts.follows}}</h6>
       <p no-paddin no-margin>following</p>
     </ion-col>
   </ion-row>
@@ -44,17 +44,17 @@
 
   <!-- Profile info -->
   <div margin>
-    <p no-margin no-padding><b>Friends</b></p>
-    <p no-padding no-margin class="info">Official Friends Instagram account.</p>
-    <p no-padding no-margin class="info"><a href="#">www.fb.com/friends.tv</a></p>
+    <p no-margin no-padding><b>{{myaccount.account.data.full_name}}</b></p>
+    <p no-padding no-margin class="info">{{myaccount.account.data.bio}}</p>
+    <p no-padding no-margin class="info"><a href="#">{{myaccount.account.data.website}}</a></p>
   </div>
 
 
 
   <ion-grid>
     <ion-row >
-      <ion-col col-4 class="grid_img" *ngFor="let i of images" (click)="pressPhoto(i.id, i.username, i.profile_img, i.post_img)">
-        <img [src]="i.post_img" alt="">
+      <ion-col col-4 class="grid_img" *ngFor="let i of myaccount.recent_media" (click)="pressPhoto(i.id, null, null, null)">
+        <img [src]="i.thumbnail" alt="">
       </ion-col>
     </ion-row>
   </ion-grid>

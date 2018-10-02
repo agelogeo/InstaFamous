@@ -166,6 +166,7 @@ export class Profile {
   ];
 
   constructor(public myaccount:MyAccountProvider,public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+    //alert(this.myaccount.account.data);
   }
 
   // Define segment for everytime when profile page is active
@@ -176,6 +177,8 @@ export class Profile {
   // Triggers when user pressed a post
   pressPhoto(user_id: number, username: string, profile_img: string, post_img: string) {
     this.presentModal(user_id, username, profile_img, post_img);
+    alert(this.myaccount.account.data.username);
+    alert(JSON.stringify(this.myaccount.account.data))
   }
 
   // Set post modal

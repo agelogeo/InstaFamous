@@ -16,6 +16,7 @@ import {FollowerStorePage} from "../pages/follower-store/follower-store";
 import {LikeStorePage} from "../pages/like-store/like-store";
 import {LoginPage} from "../pages/login/login";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
