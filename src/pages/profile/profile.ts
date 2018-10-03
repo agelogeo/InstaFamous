@@ -177,8 +177,8 @@ export class Profile {
   // Triggers when user pressed a post
   pressPhoto(user_id: number, username: string, profile_img: string, post_img: string) {
     this.presentModal(user_id, username, profile_img, post_img);
-    alert(this.myaccount.account.data.username);
-    alert(JSON.stringify(this.myaccount.account.data))
+    //alert(this.myaccount.account.data.username);
+    //alert(JSON.stringify(this.myaccount.account.data))
   }
 
   // Set post modal

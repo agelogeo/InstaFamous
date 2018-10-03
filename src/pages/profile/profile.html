@@ -53,7 +53,7 @@
 
   <ion-grid>
     <ion-row >
-      <ion-col col-4 class="grid_img" *ngFor="let i of myaccount.recent_media" (click)="pressPhoto(i.id, null, null, null)">
+      <ion-col col-4 class="grid_img" *ngFor="let i of myaccount.recent_media" (click)="pressPhoto(i.id, myaccount.account.data.username, myaccount.account.data.profile_picture, i.image)">
         <img [src]="i.thumbnail" alt="">
       </ion-col>
     </ion-row>
