@@ -37,10 +37,10 @@ export class Profile {
   }
 
   // Set post modal
-  presentModal(user_id: number, username: string, profile_img: string, post_img: string) {
+  presentModal(post_id: number, username: string, profile_img: string, post_img: string) {
     let modal = this.modalCtrl.create(ModalPost, 
     { // Send data to modal
-      user_id: user_id, 
+      post_id: post_id,
       username: username,
       profile_img: profile_img,
       post_img: post_img

@@ -1,7 +1,7 @@
 <ion-content class="main-modal">
   <div class="modal">
 
-    <ion-row>
+    <!--<ion-row>
       <ion-col col-2>
         <img [src]="modal_data.profile_img" class="avatar-modal" alt=""> 
       </ion-col>
@@ -10,14 +10,22 @@
         <p (click)="profile()">{{ modal_data.username }}</p>
       </ion-col>
 
-      <!-- If you wish, you can add close icon too. Just delete comment code -->
+
       <ion-col col-2><span style="float: right" (click)="dismiss()"><ion-icon name="close-circle" style="zoom:2.0;"></ion-icon></span></ion-col>
 
-    </ion-row>
+    </ion-row>-->
 
     <!-- Post image -->
-    <div>
+    <div class="container">
+      <div class="top-right">
+        <span style="float: right" (click)="dismiss()"><ion-icon name="close-circle" style="zoom:2.0;"></ion-icon></span>
+      </div>
       <img [src]="modal_data.post_img" alt="">
+      <div class="bottom">
+      </div>
+      <div class="bottom-left" color="light"> <ion-icon name="heart" color="danger"></ion-icon> {{myaccount.recent_media[modal_data.id].likes}}</div>
+      <div class="bottom-right" color="light"> {{myaccount.recent_media[modal_data.id].comments}} <ion-icon name="chatboxes" color="light"></ion-icon> </div>
+
     </div>
 
 

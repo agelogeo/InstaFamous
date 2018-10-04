@@ -15,7 +15,7 @@ export class ModalPost {
 
   constructor(private toastCtrl: ToastController,public loadingCtrl: LoadingController,public myaccount: MyAccountProvider,public viewCtrl: ViewController, public navParams: NavParams, public modalCtrl: ModalController) {
     this.modal_data = { // Getting data from previous page
-      id: this.navParams.get('user_id'),
+      id: this.navParams.get('post_id'),
       username: this.navParams.get('username'),
       profile_img: this.navParams.get('profile_img'),
       post_img: this.navParams.get('post_img')
