@@ -17,6 +17,9 @@ import {LikeStorePage} from "../pages/like-store/like-store";
 import {LoginPage} from "../pages/login/login";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {HttpClientModule} from "@angular/common/http";
+import {IonicStorageModule} from "@ionic/storage";
+import {TermsPage} from "../pages/terms/terms";
+import {PrivacyPage} from "../pages/privacy/privacy";
 
 @NgModule({
   declarations: [
@@ -27,12 +30,15 @@ import {HttpClientModule} from "@angular/common/http";
     FreeLikePage,
     FollowerStorePage,
     LikeStorePage,
-    LoginPage
+    LoginPage,
+    TermsPage,
+    PrivacyPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +49,9 @@ import {HttpClientModule} from "@angular/common/http";
     FreeLikePage,
     FollowerStorePage,
     LikeStorePage,
-    LoginPage
+    LoginPage,
+    TermsPage,
+    PrivacyPage
   ],
   providers: [
     StatusBar,

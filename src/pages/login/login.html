@@ -1,18 +1,33 @@
-<!--
-  Generated template for the LoginPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <ion-title>
+      Log in
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content class="bg2" padding>
+  <br><br>
+  <div  class="center">
+    <h2>InstaFamous</h2>
+  </div>
+  <ion-item>
+    <ion-label>I agree with Terms of Use</ion-label>
+    <ion-checkbox [(ngModel)]="agree"></ion-checkbox>
+  </ion-item><br>
+  <button ion-button color="dark" large  round icon-left block  (click)="login()">
+    <ion-icon name="logo-instagram"></ion-icon>
+    Log in with Instagram
+  </button>
+  <br><br>
 
-<ion-content padding>
-    <button ion-button (click)="login()">Login with Instagram</button>
+  <div  class="center">
+    <button ion-button color="light" outline (click)="showTerms()">
+      Why do we need your information?
+    </button><br><br>
+    <button ion-button small color="light" clear (click)="showPrivacy()">
+      Privacy Policy
+    </button>
+  </div>
+
 </ion-content>

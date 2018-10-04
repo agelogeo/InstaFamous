@@ -1,11 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, LoadingController, NavController, NavParams, ToastController} from 'ionic-angular';
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {MyAccountProvider} from "../../providers/my-account/my-account";
 import {TabsPage} from "../tabs/tabs";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Post} from "../../model/post";
+import {Storage} from "@ionic/storage";
+import {TermsPage} from "../terms/terms";
+import {PrivacyPage} from "../privacy/privacy";
+import {StatusBar} from "@ionic-native/status-bar";
 
 /**
  * Generated class for the LoginPage page.
@@ -22,10 +26,11 @@ declare var window: any;
   templateUrl: 'login.html',
 })
 export class LoginPage {
+  agree: boolean;
   CLIENT_ID : string = '656c7766e5c94e139c1837dab3a10122';
   account: Observable<any>;
   recent_media : Observable<any>;
-  constructor( public httpClient: HttpClient,public myaccount : MyAccountProvider,private iab: InAppBrowser,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public statusBar: StatusBar,public loadingCtrl: LoadingController,private toastCtrl:ToastController,public storage:Storage, public httpClient: HttpClient,public myaccount : MyAccountProvider,private iab: InAppBrowser,public navCtrl: NavController, public navParams: NavParams) {
 
 
   }
@@ -35,22 +40,40 @@ export class LoginPage {
   }
 
   login(){
-    this.InstagramLogin()/*.then(success => {
-      alert(success.access_token);
-    }, (error) => {
-      alert(error);
-    })*/;
+    if(!this.agree){
+      let toast = this.toastCtrl.create({
+        message: 'You should agree with Privacy Policy and Terms of use to continue.',
+        duration: 5000,
+        position: 'bottom'
+      });
+      toast.present();
+
+    }else{
+      this.InstagramLogin();
+    }
   }
 
 
   InstagramLogin() {
+    this.presentLoadingDefault();
 
-
-     const browser  = this.iab.create('https://api.instagram.com/oauth/authorize/?client_id='+this.CLIENT_ID+'&redirect_uri=http://localhost&response_type=token', '_self','location=no');
+     const browser  = this.iab.create('https://api.instagram.com/oauth/authorize/?client_id='+this.CLIENT_ID+'&redirect_uri=http://localhost&response_type=token', '_blank','location=no');
       //alert('Start');
       browser.show();
+
+
+      browser.on('exit').subscribe( event => {
+          this.statusBar.hide();
+
+        setTimeout( () => {
+          this.statusBar.show();
+        }, 1000)
+      });
+
       browser.on('loadstart').subscribe(event => {
         if ((event.url).indexOf("http://localhost") === 0) {
+
+
           var responseParameters = (event.url).split("#");
           var parsedResponse = {};
           for (var i = 0; i < responseParameters.length; i++) {
@@ -58,6 +81,9 @@ export class LoginPage {
           }
           if (parsedResponse["access_token"] !== undefined && parsedResponse["access_token"] !== null) {
             this.myaccount.access_token = parsedResponse["access_token"];
+
+
+            //this.storage.set('access_token', this.myaccount.access_token);
 
             this.account = this.httpClient.get(`https://api.instagram.com/v1/users/self/?access_token=${this.myaccount.access_token}`);
             this.account.subscribe(data => {
@@ -78,7 +104,8 @@ export class LoginPage {
                   p.link = array.data[count].link;
                   this.myaccount.recent_media.push(p);
               }
-              alert('OK ARRAY');
+
+              //alert('OK ARRAY');
               this.navCtrl.setRoot(TabsPage);
             });
 
@@ -86,9 +113,32 @@ export class LoginPage {
             alert('Reject');
           }
           browser.close();
+
         }
+
         //alert('Out of if')
       });
 
+
+  }
+
+  showTerms() {
+    this.navCtrl.push(TermsPage);
+  }
+
+  showPrivacy(){
+    this.navCtrl.push(PrivacyPage);
+  }
+
+  presentLoadingDefault() {
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    loading.present();
+
+    setTimeout(() => {
+      loading.dismiss();
+    }, 3000);
   }
 }
