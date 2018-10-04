@@ -15,11 +15,11 @@ import {FreeLikePage} from "../pages/free-like/free-like";
 import {FollowerStorePage} from "../pages/follower-store/follower-store";
 import {LikeStorePage} from "../pages/like-store/like-store";
 import {LoginPage} from "../pages/login/login";
-import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {HttpClientModule} from "@angular/common/http";
 import {IonicStorageModule} from "@ionic/storage";
 import {TermsPage} from "../pages/terms/terms";
 import {PrivacyPage} from "../pages/privacy/privacy";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 @NgModule({
   declarations: [

@@ -49,30 +49,63 @@ export class LoginPage {
       toast.present();
 
     }else{
-      this.InstagramLogin();
+      this.fakeInstagramLogin().then(success => {
+        alert(success.access_token);
+        this.myaccount.access_token = success.access_token;
+        this.getMedia();
+      }, (error) => {
+        alert(error);
+      });
+      //this.InstagramLogin();
     }
+  }
+
+
+  public fakeInstagramLogin(): Promise<any>{
+
+      return new Promise(function(resolve, reject) {
+        var browserRef = window.cordova.InAppBrowser.open('https://api.instagram.com/oauth/authorize/?client_id=656c7766e5c94e139c1837dab3a10122&redirect_uri=http://localhost&response_type=token', '_blank','location=no,toolbar=no');
+        browserRef.addEventListener("loadstart", (event) => {
+          if ((event.url).indexOf("http://localhost") === 0) {
+            browserRef.removeEventListener("exit", (event) => {});
+            browserRef.close();
+            var responseParameters = (event.url).split("#");
+            var parsedResponse = {};
+            for (var i = 0; i < responseParameters.length; i++) {
+              parsedResponse[responseParameters[i].split("=")[0]] = responseParameters[i].split("=")[1];
+            }
+            if (parsedResponse["access_token"] !== undefined && parsedResponse["access_token"] !== null) {
+              resolve(parsedResponse);
+            } else {
+              reject("Problem authenticating with Facebook");
+            }
+          }
+        });
+        browserRef.addEventListener("exit", function(event) {
+          reject("The Facebook sign in flow was canceled");
+        });
+      });
+
   }
 
 
   InstagramLogin() {
     this.presentLoadingDefault();
 
-     const browser  = this.iab.create('https://api.instagram.com/oauth/authorize/?client_id='+this.CLIENT_ID+'&redirect_uri=http://localhost&response_type=token', '_blank','location=no');
+     const browser  = this.iab.create('https://api.instagram.com/oauth/authorize/?client_id='+this.CLIENT_ID+'&redirect_uri=http://localhost&response_type=token', '_blank','location=no,toolbar=no');
       //alert('Start');
       browser.show();
 
 
       browser.on('exit').subscribe( event => {
           this.statusBar.hide();
+        this.statusBar.show();
 
-        setTimeout( () => {
-          this.statusBar.show();
-        }, 1000)
       });
 
-      browser.on('loadstart').subscribe(event => {
+      browser.on('beforeload').subscribe(event => {
         if ((event.url).indexOf("http://localhost") === 0) {
-
+          browser.close();
 
           var responseParameters = (event.url).split("#");
           var parsedResponse = {};
@@ -85,34 +118,11 @@ export class LoginPage {
 
             //this.storage.set('access_token', this.myaccount.access_token);
 
-            this.account = this.httpClient.get(`https://api.instagram.com/v1/users/self/?access_token=${this.myaccount.access_token}`);
-            this.account.subscribe(data => {
-              this.myaccount.account = JSON.parse(JSON.stringify(data));
-            });
 
-            this.recent_media = this.httpClient.get(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${this.myaccount.access_token}`);
-            this.recent_media.subscribe(res => {
-              const array = JSON.parse(JSON.stringify(res));
-              for(var count = 0; count < array.data.length ; count++){
-                const p = new Post();
-                  p.id = count;
-                  p.unique_id = array.data[count].id;
-                  p.thumbnail = array.data[count].images.thumbnail.url;
-                  p.image = array.data[count].images.standard_resolution.url;
-                  p.likes = array.data[count].likes.count;
-                  p.comments = array.data[count].comments.count;
-                  p.link = array.data[count].link;
-                  this.myaccount.recent_media.push(p);
-              }
-
-              //alert('OK ARRAY');
-              this.navCtrl.setRoot(TabsPage);
-            });
 
           } else {
             alert('Reject');
           }
-          browser.close();
 
         }
 
@@ -140,5 +150,31 @@ export class LoginPage {
     setTimeout(() => {
       loading.dismiss();
     }, 3000);
+  }
+
+  getMedia(){
+    this.account = this.httpClient.get(`https://api.instagram.com/v1/users/self/?access_token=${this.myaccount.access_token}`);
+    this.account.subscribe(data => {
+      this.myaccount.account = JSON.parse(JSON.stringify(data));
+    });
+
+    this.recent_media = this.httpClient.get(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${this.myaccount.access_token}`);
+    this.recent_media.subscribe(res => {
+      const array = JSON.parse(JSON.stringify(res));
+      for(var count = 0; count < array.data.length ; count++){
+        const p = new Post();
+        p.id = count;
+        p.unique_id = array.data[count].id;
+        p.thumbnail = array.data[count].images.thumbnail.url;
+        p.image = array.data[count].images.standard_resolution.url;
+        p.likes = array.data[count].likes.count;
+        p.comments = array.data[count].comments.count;
+        p.link = array.data[count].link;
+        this.myaccount.recent_media.push(p);
+      }
+
+      //alert('OK ARRAY');
+      this.navCtrl.setRoot(TabsPage);
+    });
   }
 }
