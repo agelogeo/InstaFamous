@@ -26,10 +26,11 @@ declare var window: any;
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  agree: boolean;
-  CLIENT_ID : string = '656c7766e5c94e139c1837dab3a10122';
   account: Observable<any>;
   recent_media : Observable<any>;
+  agree: boolean;
+  CLIENT_ID : string = '656c7766e5c94e139c1837dab3a10122';
+
   constructor(public statusBar: StatusBar,public loadingCtrl: LoadingController,private toastCtrl:ToastController,public storage:Storage, public httpClient: HttpClient,public myaccount : MyAccountProvider,private iab: InAppBrowser,public navCtrl: NavController, public navParams: NavParams) {
 
 
@@ -50,7 +51,7 @@ export class LoginPage {
 
     }else{
       this.fakeInstagramLogin().then(success => {
-        alert(success.access_token);
+        //alert(success.access_token);
         this.myaccount.access_token = success.access_token;
         this.getMedia();
       }, (error) => {
@@ -160,6 +161,7 @@ export class LoginPage {
 
     this.recent_media = this.httpClient.get(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${this.myaccount.access_token}`);
     this.recent_media.subscribe(res => {
+      this.myaccount.recent_media = [];
       const array = JSON.parse(JSON.stringify(res));
       for(var count = 0; count < array.data.length ; count++){
         const p = new Post();

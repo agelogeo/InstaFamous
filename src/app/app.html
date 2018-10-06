@@ -1,1 +1,23 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu type="overlay" [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title><i>InstaFamous</i></ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <div *ngFor="let p of pages" >
+        <button menuClose icon-start ion-item no-lines *ngIf="p.status==2 || p.status==1 && myaccount.access_token!=null"  (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon"></ion-icon> {{p.title}}
+        </button>
+        <button menuClose icon-start ion-item no-lines *ngIf="p.status==0 && myaccount.access_token==null "  (click)="openPage(p)">
+          <ion-icon item-start [name]="p.icon"></ion-icon> {{p.title}}
+        </button>
+      </div>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

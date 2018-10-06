@@ -1,6 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Injectable } from '@angular/core';
 import {Post} from "../../model/post";
+import {TabsPage} from "../../pages/tabs/tabs";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
 
 /*
   Generated class for the MyAccountProvider provider.
@@ -11,7 +14,8 @@ import {Post} from "../../model/post";
 @Injectable()
 export class MyAccountProvider {
 
-  access_token : string = '';
+
+  access_token : string = null;
   account : any;
   coins : number = 300;
   host : string = "https://givealike.a2hosted.com/deathwhisper.php?";
@@ -22,6 +26,8 @@ export class MyAccountProvider {
 
 
   }
+
+
 
 
 

@@ -5,6 +5,10 @@ import { ModalPost } from '../modal-post/modal-post';
 
 import {MyAccountProvider} from "../../providers/my-account/my-account";
 import {FollowerStorePage} from "../follower-store/follower-store";
+import {Observable} from "rxjs";
+import {HttpClient} from "@angular/common/http";
+import {Post} from "../../model/post";
+import {TabsPage} from "../tabs/tabs";
 
 
 @IonicPage()
@@ -14,13 +18,16 @@ import {FollowerStorePage} from "../follower-store/follower-store";
 })
 
 export class Profile {
+  account: Observable<any>;
+  recent_media : Observable<any>;
+
 
   public profile_segment:string;
 
   // You can get this data from your API. This is a dumb data for being an example.
 
 
-  constructor(public myaccount:MyAccountProvider,public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
+  constructor(public httpClient: HttpClient,public myaccount:MyAccountProvider,public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
     //alert(this.myaccount.account.data);
   }
 
@@ -57,4 +64,37 @@ export class Profile {
     this.navCtrl.push(FollowerStorePage);
   }
 
+
+  doRefresh(refresher){
+    setTimeout(() => {
+      refresher.complete();
+    }, 10000);
+
+    this.account = this.httpClient.get(`https://api.instagram.com/v1/users/self/?access_token=${this.myaccount.access_token}`);
+    this.account.subscribe(data => {
+      this.myaccount.account = JSON.parse(JSON.stringify(data));
+    });
+
+    this.recent_media = this.httpClient.get(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${this.myaccount.access_token}`);
+    this.recent_media.subscribe(res => {
+      this.myaccount.recent_media = [];
+      const array = JSON.parse(JSON.stringify(res));
+      for(var count = 0; count < array.data.length ; count++){
+        const p = new Post();
+        p.id = count;
+        p.unique_id = array.data[count].id;
+        p.thumbnail = array.data[count].images.thumbnail.url;
+        p.image = array.data[count].images.standard_resolution.url;
+        p.likes = array.data[count].likes.count;
+        p.comments = array.data[count].comments.count;
+        p.link = array.data[count].link;
+        this.myaccount.recent_media.push(p);
+      }
+
+
+      refresher.complete();
+      //alert('OK ARRAY');
+
+    });
+  }
 }

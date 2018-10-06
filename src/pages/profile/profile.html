@@ -1,6 +1,9 @@
 <ion-header>
 
   <ion-navbar color="white">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>{{myaccount.account.data.username}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="goToStore()">
@@ -11,7 +14,14 @@
 
 </ion-header>
 <ion-content>
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="crescent"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-row padding>
     <!-- Avatar -->
     <ion-col col-3 >
