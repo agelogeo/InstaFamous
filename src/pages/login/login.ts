@@ -10,6 +10,7 @@ import {Storage} from "@ionic/storage";
 import {TermsPage} from "../terms/terms";
 import {PrivacyPage} from "../privacy/privacy";
 import {StatusBar} from "@ionic-native/status-bar";
+import {UniqueDeviceID} from "@ionic-native/unique-device-id";
 
 /**
  * Generated class for the LoginPage page.
@@ -31,7 +32,7 @@ export class LoginPage {
   agree: boolean;
   CLIENT_ID : string = '656c7766e5c94e139c1837dab3a10122';
 
-  constructor(public statusBar: StatusBar,public loadingCtrl: LoadingController,private toastCtrl:ToastController,public storage:Storage, public httpClient: HttpClient,public myaccount : MyAccountProvider,private iab: InAppBrowser,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private uniqueDeviceID: UniqueDeviceID,public statusBar: StatusBar,public loadingCtrl: LoadingController,private toastCtrl:ToastController,public storage:Storage, public httpClient: HttpClient,public myaccount : MyAccountProvider,private iab: InAppBrowser,public navCtrl: NavController, public navParams: NavParams) {
 
 
   }
@@ -41,6 +42,8 @@ export class LoginPage {
   }
 
   login(){
+    this.uniqueDeviceID.get()
+      .then((uuid: any) => alert(uuid));
     if(!this.agree){
       let toast = this.toastCtrl.create({
         message: 'You should agree with Privacy Policy and Terms of use to continue.',
@@ -52,6 +55,8 @@ export class LoginPage {
     }else{
       this.fakeInstagramLogin().then(success => {
         //alert(success.access_token);
+
+
         this.myaccount.access_token = success.access_token;
         this.getMedia();
       }, (error) => {

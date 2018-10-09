@@ -20,6 +20,7 @@ import {IonicStorageModule} from "@ionic/storage";
 import {TermsPage} from "../pages/terms/terms";
 import {PrivacyPage} from "../pages/privacy/privacy";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
+import {UniqueDeviceID} from "@ionic-native/unique-device-id";
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
     SplashScreen,
     MyAccountProvider,
     InAppBrowser,
+    UniqueDeviceID,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
