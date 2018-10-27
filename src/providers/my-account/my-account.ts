@@ -16,9 +16,11 @@ export class MyAccountProvider {
 
 
   access_token : string = null;
+  device_id : string = null;
   account : any;
-  coins : number = 300;
-  host : string = "https://givealike.a2hosted.com/deathwhisper.php?";
+  coins : number = 0;
+  free_ads_max_reached = false;
+  host : string = "https://agelogeo.com/apps/deathavenue.php?";
   recent_media : Post[] = [];
 
   constructor() {

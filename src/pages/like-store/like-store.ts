@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {MyAccountProvider} from "../../providers/my-account/my-account";
+import {HttpClient} from "@angular/common/http";
 
 /**
  * Generated class for the LikeStorePage page.
@@ -40,7 +41,7 @@ export class LikeStorePage {
     },
   ];
 
-  constructor(private toastCtrl:ToastController,public myaccount : MyAccountProvider,public navCtrl: NavController) {
+  constructor(public httpClient: HttpClient,private toastCtrl:ToastController,public myaccount : MyAccountProvider,public navCtrl: NavController) {
 
   }
 
@@ -61,6 +62,22 @@ export class LikeStorePage {
     });
 
     toast.present();
+  }
+
+  // Define segment for everytime when profile page is active
+  ionViewWillEnter() {
+    this.getCoins();
+  }
+
+  async getCoins(){
+
+    this.httpClient.get(this.myaccount.host+'free_ads_limit=true&coins=true&device_id='+this.myaccount.device_id+'&access_token='+this.myaccount.access_token)
+      .subscribe(data => {
+        this.myaccount.free_ads_max_reached = data['limitReached'];
+        this.myaccount.coins = data['coins'];
+      });
+
+
   }
 
 }

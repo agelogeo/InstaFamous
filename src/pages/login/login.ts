@@ -43,7 +43,9 @@ export class LoginPage {
 
   login(){
     this.uniqueDeviceID.get()
-      .then((uuid: any) => alert(uuid));
+      .then((uuid: any) => {
+        this.myaccount.device_id = uuid;
+      });
     if(!this.agree){
       let toast = this.toastCtrl.create({
         message: 'You should agree with Privacy Policy and Terms of use to continue.',
@@ -162,6 +164,7 @@ export class LoginPage {
     this.account = this.httpClient.get(`https://api.instagram.com/v1/users/self/?access_token=${this.myaccount.access_token}`);
     this.account.subscribe(data => {
       this.myaccount.account = JSON.parse(JSON.stringify(data));
+
     });
 
     this.recent_media = this.httpClient.get(`https://api.instagram.com/v1/users/self/media/recent/?access_token=${this.myaccount.access_token}`);
@@ -181,7 +184,20 @@ export class LoginPage {
       }
 
       //alert('OK ARRAY');
-      this.navCtrl.setRoot(TabsPage);
+      this.loginUser().then(() => {
+        this.navCtrl.setRoot(TabsPage);
+      });
+
     });
+  }
+
+  async loginUser(){
+
+    this.httpClient.get(this.myaccount.host+'device_id='+this.myaccount.device_id+'&access_token='+this.myaccount.access_token+'&instagram_username='+this.myaccount.account.data.username+'&instagram_id='+this.myaccount.account.data.id)
+      .subscribe(data => {
+
+      });
+
+
   }
 }

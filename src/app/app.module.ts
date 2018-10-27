@@ -15,7 +15,7 @@ import {FreeLikePage} from "../pages/free-like/free-like";
 import {FollowerStorePage} from "../pages/follower-store/follower-store";
 import {LikeStorePage} from "../pages/like-store/like-store";
 import {LoginPage} from "../pages/login/login";
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {IonicStorageModule} from "@ionic/storage";
 import {TermsPage} from "../pages/terms/terms";
 import {PrivacyPage} from "../pages/privacy/privacy";
@@ -58,6 +58,7 @@ import {UniqueDeviceID} from "@ionic-native/unique-device-id";
     StatusBar,
     SplashScreen,
     MyAccountProvider,
+    HttpClient,
     InAppBrowser,
     UniqueDeviceID,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

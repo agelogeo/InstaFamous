@@ -29,12 +29,10 @@ export class Profile {
 
   constructor(public httpClient: HttpClient,public myaccount:MyAccountProvider,public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
     //alert(this.myaccount.account.data);
+
   }
 
-  // Define segment for everytime when profile page is active
-  ionViewWillEnter() {
-    this.profile_segment = 'grid';
-  }
+
 
   // Triggers when user pressed a post
   pressPhoto(user_id: number, username: string, profile_img: string, post_img: string) {
@@ -97,4 +95,22 @@ export class Profile {
 
     });
   }
+
+  // Define segment for everytime when profile page is active
+  ionViewWillEnter() {
+    this.getCoins();
+    this.profile_segment = 'grid';
+  }
+
+  async getCoins(){
+
+    this.httpClient.get(this.myaccount.host+'free_ads_limit=true&coins=true&device_id='+this.myaccount.device_id+'&access_token='+this.myaccount.access_token)
+      .subscribe(data => {
+        this.myaccount.free_ads_max_reached = data['limitReached'];
+        this.myaccount.coins = data['coins'];
+      });
+
+
+  }
+
 }
